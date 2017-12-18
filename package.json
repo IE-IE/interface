@@ -55,6 +55,7 @@
     "postcss-focus": "^3.0.0",
     "postcss-for": "^2.1.1",
     "postcss-import": "^11.0.0",
+    "postcss-import-webpack-resolver": "^1.0.1",
     "postcss-loader": "^2.0.8",
     "postcss-selector-not": "^3.0.1",
     "rimraf": "^2.6.0",
