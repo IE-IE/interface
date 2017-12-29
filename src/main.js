@@ -9,8 +9,12 @@ import store from './store';
 import App from './App';
 import config from './config';
 
+import BGTheme from 'vue-baldurs-gate-theme';
+import 'vue-baldurs-gate-theme/dist/vue-baldurs-gate-theme.css';
+
 Vue.use(VueResource);
 Vue.use(VueConfig, { config });
+Vue.use(BGTheme);
 
 Vue.config.productionTip = false;
 Vue.http.options.root = config.httpRoot;
@@ -23,3 +27,5 @@ new Vue({
   template: '<App/>',
   components: { App }
 });
+
+import './request';

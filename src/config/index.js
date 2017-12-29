@@ -1,6 +1,6 @@
 import app from './app';
 
 export default {
-  httpRoot: '',
+  httpRoot: 'http://localhost:3000',
   app
 };
