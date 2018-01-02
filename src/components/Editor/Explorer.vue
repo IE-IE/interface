@@ -6,7 +6,8 @@ export default {
   name: 'ieie-explorer',
   data () {
     return {
-      filter: ''
+      filter: '',
+      chosenFile: ''
     };
   },
   computed: {
@@ -50,6 +51,7 @@ export default {
     someFileClicked (event) {
       const file = event.target.dataset.file;
       if (file) {
+        this.chosenFile = file;
         this.$emit('fileChoose', file);
       }
     },
@@ -88,6 +90,7 @@ export default {
               v-for="file in filetype.files"
               :key="`filetype-${filetype.name}-${file}`"
               :data-file="file"
+              :class="{ 'explorer_filetype_file--mark': file === chosenFile }"
               class="explorer_filetype_file">
               {{ file }}
             </li>
@@ -145,6 +148,11 @@ export default {
 .explorer_filetype_file {
   line-height: 1.2;
   font-size: 0.9em;
+}
+
+.explorer_filetype_file--mark {
+  color: rgb(224, 199, 55);
+  text-decoration: underline;
 }
 
 .explorer_filter {
