@@ -144,6 +144,7 @@ export default {
 
 .explorer_filetype_file {
   line-height: 1.2;
+  font-size: 0.9em;
 }
 
 .explorer_filter {
