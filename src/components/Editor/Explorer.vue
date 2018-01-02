@@ -50,7 +50,7 @@ export default {
     someFileClicked (event) {
       const file = event.target.dataset.file;
       if (file) {
-        this.$emit('fileChosen', file);
+        this.$emit('fileChoose', file);
       }
     },
     toggleFiletype (event) {
