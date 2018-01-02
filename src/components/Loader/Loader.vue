@@ -98,6 +98,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  max-width: 800px;
 }
 
 .ieie-loader_location {

@@ -1,5 +1,6 @@
 <script>
 import { fetch } from '@/request';
+import debounce from 'debounce';
 
 export default {
   name: 'ieie-explorer',
@@ -42,6 +43,9 @@ export default {
         this.$store.commit('chitin/files', data.full);
       });
     },
+    filterUpdate: debounce(function (value) {
+      this.filter = value;
+    }, 200),
     toggleFiletype (event) {
       const fileList = event.target.parentNode.getElementsByClassName('explorer_filetype_files')[0];
       if (parseInt(fileList.dataset.count) > 0) {
@@ -58,8 +62,11 @@ export default {
         <li
           v-for="filetype in filteredFiles"
           :key="`filetype-${filetype.name}`"
-          class="explorer_filetype">
-          <span class="explorer_filetype_name" @click="toggleFiletype($event)">
+          class="explorer_filetype"
+          :class="{ 'explorer_filetype--fade': filetype.files.length === 0 }">
+          <span
+            @click="toggleFiletype($event)"
+            class="explorer_filetype_name">
             {{ filetype.name }}
             <span class="explorer_filetype_count">
             ({{ filetype.files.length }})
@@ -67,7 +74,7 @@ export default {
           </span>
           <ul
             class="explorer_list explorer_filetype_files"
-            :class="{ 'explorer_filetype_files--collapsed': !(filter && filetype.files.length < 10)  }"
+            :class="{ 'explorer_filetype_files--collapsed': !(filter && filetype.files.length < 10) }"
             :data-count="filetype.files.length">
             <li
               v-for="file in filetype.files"
@@ -80,7 +87,8 @@ export default {
       </ul>
     </bg-scroll>
     <bg-textfield
-      v-model="filter"
+      @input="filterUpdate"
+      vertical
       label="Wyszukaj"
       id="filter"
       class="explorer_filter" />
@@ -106,6 +114,11 @@ export default {
 .explorer_list {
   margin-top: 0;
   padding-left: 1em;
+  list-style: circle;
+}
+
+.explorer_filetype--fade {
+  opacity: 0.5;
 }
 
 .explorer_filetype_files--collapsed {

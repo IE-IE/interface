@@ -18,7 +18,6 @@ module.exports = {
     'postcss-for': {},
     'postcss-selector-not': {},
     'postcss-focus': {},
-    // 'postcss-cssnext': {},
     'autoprefixer': {},
     'cssnano': {}
   }
