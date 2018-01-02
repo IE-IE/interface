@@ -47,7 +47,7 @@ export default {
       this.filter = value;
     }, 200),
     toggleFiletype (event) {
-      const fileList = event.target.parentNode.getElementsByClassName('explorer_filetype_files')[0];
+      const fileList = event.target.closest('.explorer_filetype').getElementsByClassName('explorer_filetype_files')[0];
       if (parseInt(fileList.dataset.count) > 0) {
         fileList.classList.toggle('explorer_filetype_files--collapsed');
       }
@@ -64,14 +64,14 @@ export default {
           :key="`filetype-${filetype.name}`"
           class="explorer_filetype"
           :class="{ 'explorer_filetype--fade': filetype.files.length === 0 }">
-          <span
+          <div
             @click="toggleFiletype($event)"
             class="explorer_filetype_name">
             {{ filetype.name }}
             <span class="explorer_filetype_count">
-            ({{ filetype.files.length }})
+              ({{ filetype.files.length }})
             </span>
-          </span>
+          </div>
           <ul
             class="explorer_list explorer_filetype_files"
             :class="{ 'explorer_filetype_files--collapsed': !(filter && filetype.files.length < 10) }"
@@ -123,6 +123,10 @@ export default {
 
 .explorer_filetype_files--collapsed {
   display: none;
+}
+
+.explorer_filetype_name {
+  display: block;
 }
 
 .explorer_filetype_count {
