@@ -22,7 +22,7 @@ export default {
           };
 
           filetype.files = filetypes[i].files.filter((file) => {
-            return file.toLowerCase().indexOf(this.filter) === 0;
+            return file.toLowerCase().indexOf(this.filter.toLowerCase()) === 0;
           });
 
           result.push(filetype);
@@ -44,7 +44,7 @@ export default {
       });
     },
     filterUpdate: debounce(function (value) {
-      // eslint-disable-next-line no-invalid-this 
+      // eslint-disable-next-line no-invalid-this
       this.filter = value;
     }, 200),
     someFileClicked (event) {
