@@ -44,8 +44,15 @@ export default {
       });
     },
     filterUpdate: debounce(function (value) {
+      // eslint-disable-next-line no-invalid-this 
       this.filter = value;
     }, 200),
+    someFileClicked (event) {
+      const file = event.target.dataset.file;
+      if (file) {
+        this.$emit('fileChosen', file);
+      }
+    },
     toggleFiletype (event) {
       const fileList = event.target.closest('.explorer_filetype').getElementsByClassName('explorer_filetype_files')[0];
       if (parseInt(fileList.dataset.count) > 0) {
@@ -65,7 +72,7 @@ export default {
           class="explorer_filetype"
           :class="{ 'explorer_filetype--fade': filetype.files.length === 0 }">
           <div
-            @click="toggleFiletype($event)"
+            @click="toggleFiletype"
             class="explorer_filetype_name">
             {{ filetype.name }}
             <span class="explorer_filetype_count">
@@ -75,10 +82,12 @@ export default {
           <ul
             class="explorer_list explorer_filetype_files"
             :class="{ 'explorer_filetype_files--collapsed': !(filter && filetype.files.length < 10) }"
-            :data-count="filetype.files.length">
+            :data-count="filetype.files.length"
+            @click="someFileClicked">
             <li
               v-for="file in filetype.files"
               :key="`filetype-${filetype.name}-${file}`"
+              :data-file="file"
               class="explorer_filetype_file">
               {{ file }}
             </li>
