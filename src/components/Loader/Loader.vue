@@ -56,7 +56,7 @@ export default {
 
 <template>
   <bg-panel class="ieie-loader" outset>
-    <div v-if="locationConfirmed">
+    <div v-if="locationConfirmed" class="ieie-loader_progress">
       <bg-header
         :level="3"
         font="postanti"
@@ -117,6 +117,10 @@ export default {
   width: 100%;
   display: flex;
   align-items: center;
+}
+
+.ieie-loader_progress {
+  width: 100%;
 }
 
 .ieie-loader_progressbar {
