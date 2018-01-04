@@ -40,6 +40,7 @@ export default {
         this.activeEditor = editors[type];
       } else {
         this.unsupported = true;
+        this.activeEditor = null;
       }
     }
   }

@@ -92,7 +92,7 @@ export default {
               :data-file="file"
               :class="{ 'explorer_filetype_file--mark': file === chosenFile }"
               class="explorer_filetype_file">
-              {{ file }}
+              {{ file }}<span class="explorer_filetype_file_ext">.{{ filetype.name }}</span>
             </li>
           </ul>
         </li>
@@ -148,6 +148,10 @@ export default {
 .explorer_filetype_file {
   line-height: 1.2;
   font-size: 0.9em;
+}
+
+.explorer_filetype_file_ext {
+  font-size: 0.6em;
 }
 
 .explorer_filetype_file--mark {
