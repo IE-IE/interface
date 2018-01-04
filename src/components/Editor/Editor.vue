@@ -13,7 +13,8 @@ export default {
     return {
       activeEditor: null,
       file: null,
-      fileData: null
+      fileData: null,
+      unsupported: false
     };
   },
   methods: {
@@ -35,7 +36,10 @@ export default {
       };
 
       if (editors[type]) {
+        this.unsupported = false;
         this.activeEditor = editors[type];
+      } else {
+        this.unsupported = true;
       }
     }
   }
@@ -46,6 +50,8 @@ export default {
     <ieie-explorer @fileChoose="fileChosen" />
     <component
       v-if="activeEditor"
-      :is="activeEditor" />
+      :is="activeEditor"
+      :data="fileData" />
+    <div v-if="unsupported">Niewspierany format pliku</div>
   </div>
 </template>

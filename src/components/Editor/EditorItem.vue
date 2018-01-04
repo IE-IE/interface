@@ -1,6 +1,12 @@
 <script>
 export default {
-  name: 'ieie-editor-item'
+  name: 'ieie-editor-item',
+  props: {
+    data: {
+      type: Object,
+      required: true
+    }
+  }
 };
 </script>
 <template>
