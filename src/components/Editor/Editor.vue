@@ -47,7 +47,7 @@ export default {
 };
 </script>
 <template>
-  <div>
+  <div class="primary-screen">
     <ieie-explorer @fileChoose="fileChosen" />
     <component
       v-if="activeEditor"
@@ -56,3 +56,10 @@ export default {
     <div v-if="unsupported">Niewspierany format pliku</div>
   </div>
 </template>
+<style scoped>
+.primary-screen {
+  width: 100%;
+  height: 100%;
+  padding-left: 250px;
+}
+</style>
